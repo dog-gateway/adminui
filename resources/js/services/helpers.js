@@ -19,6 +19,16 @@ services.factory('CleanStatus', function() {
 		       	key = key.slice(0, end);
 		   	}
 			status[key] = value;
+			
+			// fix the value
+			angular.forEach(value, function(val, key) {
+				var floatVal = parseFloat(val.value);
+				if(floatVal!=NaN)
+				{
+					val.unit = val.value.substring(val.value.lastIndexOf(" ")+1,val.value.length);
+					val.value = floatVal;
+				}			
+			});
 		});
 		return status;
 	};

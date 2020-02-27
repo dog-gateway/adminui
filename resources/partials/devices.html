@@ -25,7 +25,8 @@
               <ul class="list-group">
                 <li class="list-group-item" ng-repeat="(stateName, stateValues) in device.status">
                   {{stateName}}
-                  <span class="badge" ng-repeat="stateValue in stateValues">{{stateValue.value}}</span>
+                  <span ng-if="stateValue.unit != undefined" class="badge" ng-repeat="stateValue in stateValues">{{stateValue.value | number:3}} {{stateValue.unit}}</span>
+                  <span ng-if="stateValue.unit == undefined" class="badge" ng-repeat="stateValue in stateValues">{{stateValue.value}}</span>
                 </li>
               </ul>
             </div>
